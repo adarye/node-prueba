@@ -1,21 +1,29 @@
 const User = require('../database/models/User');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 
 
 exports.get = (req, res) => {
-    if (req.params.rol) {
-        User.findAll({
-            where: {
-                rol: req.params.rol
+
+    User.findAll().then(response => {
+        res.render('users/index', { users: response, rol: req.params.rol })
+
+    })
+
+}
+exports.search = (req, res) => {
+
+    User.findAll({
+        where: {
+            nombre: {
+                [Op.like]: `%${req.query.param}%`
             }
-        }).then(response => {
-            res.render('users/index', { users: response, rol: req.params.rol })
-        })
-    } else {
-        User.findAll().then(response => {
-            res.render('users/index', { users: response, rol: req.params.rol })
-        })
-    }
+        }
+    }).then(response => {
+        res.render('users/index', { users: response, rol: req.params.rol })
+    })
+
 
 }
 exports.edit = (req, res) => {

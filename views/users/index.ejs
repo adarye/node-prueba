@@ -1,43 +1,55 @@
 <%- contentFor('body') %>
-    <h2>Dashboard </h2>
+    <h2>Usuarios </h2>
     <a href="/user/view/new" class="btn btn-outline-success mb-3"><i class='bx bx-plus bx-lg'></i></a>
 
-    <table class="table table-hover bg-light">
-        <thead class="bg-template text-light">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">ID</th>
-                <th scope="col">Email</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% users.forEach((user, index)=> { %>
+    <div class="row mb-3">
+        <form class="mb-3" action="/user/buscar" method="GET">
+            <div class="input-group">
+                <div class="col-md-4 ">
+                    <input type="text" class="form-control" name="param" placeholder="Buscar por nombre">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success" type="submit"><i class="bx bx-search"></i></button>
+                </div>
+        </form>
+        </div>
+
+        <table class="table table-hover bg-light">
+            <thead class="bg-template text-light">
                 <tr>
-                    <th scope="row">
-
-                        <%= index + 1  %>
-
-                    </th>
-                    <td>
-                        <%= user.id  %>
-                    </td>
-                    <td>
-                        <%= user.email  %>
-                    </td>
-                    <td>
-                        <%= user.nombre  %>
-                    </td>
-                    <td>
-                        <%= user.rol  %>
-                    </td>
-                    <td>
-                        <a href="/user/view/edit/<%=user.id %>" class="btn btn-success"><i class='bx bxs-edit'></i></a>
-                        <a href="/user/delete/<%=user.id %>" class="btn btn-danger"><i class='bx bxs-trash' ></i></a>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-                <% }) %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <% users.forEach((user, index)=> { %>
+                    <tr>
+                        <th scope="row">
+
+                            <%= index + 1  %>
+
+                        </th>
+                        <td>
+                            <%= user.id  %>
+                        </td>
+                        <td>
+                            <%= user.email  %>
+                        </td>
+                        <td>
+                            <%= user.nombre  %>
+                        </td>
+                        <td>
+                            <%= user.rol  %>
+                        </td>
+                        <td>
+                            <a href="/user/view/edit/<%=user.id %>" class="btn btn-success"><i class='bx bxs-edit'></i></a>
+                            <a href="/user/delete/<%=user.id %>" class="btn btn-danger"><i class='bx bxs-trash' ></i></a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>

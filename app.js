@@ -8,7 +8,8 @@ const session = require('express-session');
 app.use(session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { maxAge: new Date(Date.now() + (60 * 1000 * 30)) }
 }))
 
 app.use(expressLayouts);

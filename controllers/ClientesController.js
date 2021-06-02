@@ -1,9 +1,22 @@
 const Cliente = require('../database/models/Cliente')
 const bcryptjs = require('bcryptjs')
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.get = (req, res) => {
     Cliente.findAll().then(response => {
-        console.log(response)
+        res.render('clientes/index', { clientes: response })
+    })
+
+}
+exports.search = (req, res) => {
+    Cliente.findAll({
+        where: {
+            nombre: {
+                [Op.like]: `%${req.query.param}%`
+            }
+        }
+    }).then(response => {
         res.render('clientes/index', { clientes: response })
     })
 

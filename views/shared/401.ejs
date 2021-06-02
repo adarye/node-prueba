@@ -1,0 +1,11 @@
+<%- contentFor('b') %>
+    <h1>
+        ERROR 401 unahtourized
+    </h1>
+    <p>Al parecer no tiene permiso para estar aquí</p>
+    <% if(rol === 'vendedor') { %>
+        <a href="/clientes">Volver a clientes</a>
+        <% }  else{%>
+
+            <a href="/login">Volver al login</a>
+            <% } %>
