@@ -6,7 +6,11 @@ const Op = Sequelize.Op;
 
 exports.get = (req, res) => {
 
-    User.findAll().then(response => {
+    User.findAll({
+        order: [
+            ['createdAt', 'DESC'],
+        ],
+    }).then(response => {
         res.render('users/index', { users: response, rol: req.params.rol })
 
     })

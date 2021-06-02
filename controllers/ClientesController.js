@@ -4,7 +4,11 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 exports.get = (req, res) => {
-    Cliente.findAll().then(response => {
+    Cliente.findAll({
+        order: [
+            ['createdAt', 'DESC'],
+        ],
+    }).then(response => {
         res.render('clientes/index', { clientes: response })
     })
 
