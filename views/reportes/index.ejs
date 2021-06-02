@@ -1,0 +1,75 @@
+<%- contentFor('body') %>
+    <h2>Reportes </h2>
+    <a href="/reportes" class="btn btn-success mb-3"><i class='bx bx-download bx-sm'></i></a>
+
+    <table class="table table-hover bg-light">
+        <thead class="bg-template text-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Vigente</th>
+                <th scope="col">Oral</th>
+                <th scope="col">Setralina</th>
+                <th scope="col">Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% json.forEach((item, index)=> { %>
+                <tr>
+                    <th scope="row">
+
+                        <%= index + Number(initialRegister) + 1  %>
+
+                    </th>
+                    <td>
+                        <% item.mg %>
+
+                    </td>
+                    <td>
+                        <!-- <% item.vigente %> -->
+                    </td>
+                    <td>
+                        <%= item.SERTRALINA %>
+                    </td>
+                    <td>
+                        <%=   %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+
+    </table>
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <a href="/reportes/<%= Number(page) - 1 %>" class="btn btn-danger">Atras</a>
+
+            <% if (json.length != 0 || page <= 0) { %>
+
+                <% if (json.length >= 10) { %>
+                    <a href="/reportes/<%= Number(page) + 1 %>" class="btn btn-success">
+                        <%= Number(page) + 1%>
+                    </a>
+                    </a>
+                    <% if (pageRestant >= 20) { %>
+                        <a href="/reportes/<%= Number(page) + 2 %>" class="btn btn-success">
+                            <%= Number(page )+ 2 %>
+                        </a>
+                        <% }  %>
+
+                            <% if (pageRestant >= 30) { %>
+                                <a href="/reportes/<%= Number(page) + 3 %>" class="btn btn-success">
+                                    <%= Number(page) + 3 %>
+                                </a>
+                                <% }  %>
+                                    <% if (pageRestant >= 40) { %>
+                                        <a href="/reportes/<%= Number(page) + 4 %>" class="btn btn-success">
+                                            <%= Number(page) + 4 %>
+                                        </a>
+                                        <% }  %>
+
+
+                                            <a href="/reportes/<%= Number(page) + 1 %>" class="btn btn-primary">Siguiente</a>
+                                            <% }  %>
+                                                <% }  %>
+        </div>
+
+    </div>

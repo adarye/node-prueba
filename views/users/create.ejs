@@ -1,0 +1,116 @@
+<%- contentFor('body') %>
+    <div class="row justify-content-center">
+        <div class="col-md-11">
+            <div class="card">
+                <div class="card-header bg-template text-light">
+
+                    <% if (typeof user != "undefined" && typeof user.id != "undefined" && typeof user.createdAt != "undefined" ) { %>
+                        <h3> <a href="/" class="text-light"><i class='bx bx-arrow-back box-lg'></i></a> EDITAR USUARIO</h3>
+                        <strong class="id-edit"> ID <%-user.id %></strong>
+                        <%  } else{ %>
+                            <h3> <a href="/" class="text-light"><i class='bx bx-arrow-back box-lg'></i></a> CREAR USUARIO</h3>
+                            <%  } %>
+
+                </div>
+                <div class="card-body">
+                    <% if (typeof user != "undefined" && typeof user.id != "undefined" && typeof user.createdAt != "undefined") { %>
+                        <form action="/user/update" method="post">
+                            <input hidden name="id" placeholder="id" value="<%-user.id%>">
+                            <input hidden name="createdAt" placeholder="id" value="<%-user.createdAt%>">
+                            <%  } else{ %>
+                                <form action="/user/create" method="post">
+                                    <%  } %>
+                                        <div class="row justify-content-center">
+
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class='bx bxs-user-rectangle'></i></i></span>
+                                                    <% if (typeof user != "undefined") { %>
+                                                        <input type="text" class="form-control" name="email" placeholder="Email" value="<%= user.email %>">
+                                                        <%  } else{ %>
+                                                            <input type="text" class="form-control" name="email" placeholder="Email">
+                                                            <%  } %>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class='bx bxs-user'></i></span>
+                                                    <% if (typeof user != "undefined") { %>
+                                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<%= user.nombre %>">
+                                                        <%  } else{ %>
+                                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                                            <%  } %>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <!-- <span class="input-group-text"><i class='bx bxs-id-card'></i></span> -->
+
+                                                    <% if (typeof user != "undefined" && typeof user.id != "undefined" && typeof user.createdAt == "undefined" ) { %>
+                                                        <span class="input-group-text"><i class='bx bxs-id-card'></i></span>
+                                                        <input type="text" class="form-control" name="id" placeholder="Documento de Identidad" value="<%= user.id %>">
+                                                        <%  } else if(typeof user.createdAt == "undefined" &&  typeof user.id == "undefined" ) { %>
+                                                            <span class="input-group-text"><i class='bx bxs-id-card'></i></span>
+                                                            <input type="text" class="form-control" name="id" placeholder="Numero de Documento" value="<%= user.id %>">
+                                                            <%  } %>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class='bx bx-highlight'></i></span>
+                                                    <select class="form-control" name="rol">
+                                        <option value="admin">Administrador</option>
+                                        <option value="vendedor">Vendedor</option>
+                                        <option value="cliente">Cliente</option>
+                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-9">
+                                                <% if (typeof user != "undefined" && typeof user.createdAt == "undefined") { %>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"><i class='bx bxs-lock'></i></span>
+                                                        <input type="password" class="form-control" name="password" placeholder="Password" value="<%= user.password %>">
+                                                        <%  } else if( typeof user.createdAt == "undefined"){ %>
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text"><i class='bx bxs-lock'></i></span>
+                                                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                                                <%  } %>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-success" type="submit"><i class='bx bx-save bx-lg'>
+                                    </i><br> <% if (typeof user != "undefined" && typeof user.id != "undefined" ) { %>
+
+                                    Actualizar
+                                    <%}else{ %>
+                                       Crear
+                                <% }%> </button>
+                                                </div>
+                                            </div>
+                                </form>
+                                </div>
+
+                </div>
+            </div>
+        </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <% if (typeof alert != "undefined") { %>
+            <script>
+                Swal.fire({
+                    title: '<%= alert.alertTitle %>',
+                    text: '<%= alert.alertMessage %>',
+                    icon: '<%= alert.alertIcon %>',
+                    time: '<%= alert.time %>',
+                    confirmButtonText: 'Cool'
+                });
+            </script>
+            <% } %>

@@ -1,0 +1,54 @@
+<%- contentFor('login') %>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 100%;">
+                    <div class="card-body">
+                        <img src="https://pharmasan.co/images/logo.png" alt="" class="card-img-top">
+                        <form action="/auth" method="POST" class="mt-4">
+                            <div class="col-md-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" style="background-color: #007993 ; color: white;"><i class='bx bxs-user'></i></span>
+                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" style="background-color: #007993 ; color: white;"><i class='bx bxs-lock'></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" style="background-color: #007993 ; color: white;"><i class='bx bx-select-multiple'></i></span>
+                                    <select name="rol" id="" class="form-control">
+                                   <option value="admin">Administrador</option>
+                                   <option value="vendedor">Vendedor</option>
+                               </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-grid gap-2">
+                                <button class="btn  btn-primary" style="background-color: #007993 ; color:white" type="submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                time: '<%= time %>',
+                confirmButtonText: 'Cool'
+            }).then(() => {
+                window.location = '/<%= ruta %>'
+            })
+        </script>
+        <% } %>

@@ -1,0 +1,43 @@
+<%- contentFor('body') %>
+    <h2>Dashboard </h2>
+    <a href="/user/view/new" class="btn btn-outline-success mb-3"><i class='bx bx-plus bx-lg'></i></a>
+
+    <table class="table table-hover bg-light">
+        <thead class="bg-template text-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach((user, index)=> { %>
+                <tr>
+                    <th scope="row">
+
+                        <%= index + 1  %>
+
+                    </th>
+                    <td>
+                        <%= user.id  %>
+                    </td>
+                    <td>
+                        <%= user.email  %>
+                    </td>
+                    <td>
+                        <%= user.nombre  %>
+                    </td>
+                    <td>
+                        <%= user.rol  %>
+                    </td>
+                    <td>
+                        <a href="/user/view/edit/<%=user.id %>" class="btn btn-success"><i class='bx bxs-edit'></i></a>
+                        <a href="/user/delete/<%=user.id %>" class="btn btn-danger"><i class='bx bxs-trash' ></i></a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>

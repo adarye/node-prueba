@@ -1,0 +1,106 @@
+<%- contentFor('body') %>
+    <div class="row justify-content-center">
+        <div class="col-md-11">
+            <div class="card">
+                <div class="card-header bg-template text-light">
+
+
+                    <% if (typeof cliente != "undefined" && typeof cliente.id != "undefined" &&  typeof cliente.createdAt != "undefined" ) { %>
+                        <h3> <a href="/clientes" class="text-light"><i class='bx bx-arrow-back box-lg'></i></a> EDITAR CLIENTE</h3>
+                        <strong class="id-edit"> ID <%-cliente.id %></strong>
+                        <%  } else{ %>
+                            <h3> <a href="/clientes" class="text-light"><i class='bx bx-arrow-back box-lg'></i></a> CREAR CLIENTE</h3>
+                            <%  } %>
+
+
+                </div>
+                <div class="card-body">
+                    <% if (typeof cliente != "undefined" && typeof cliente.id != "undefined" && typeof cliente.createdAt != "undefined") { %>
+                        <form action="/cliente/update" method="post">
+                            <!-- <input hidden name="id" placeholder="id" value="<%-cliente.id%>"> -->
+                            <input hidden name="createdAt" placeholder="id" value="<%-cliente.createdAt%>">
+                            <%  } else{ %>
+                                <form action="/cliente/create" method="post">
+                                    <%  } %>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <% if (typeof cliente != "undefined" && typeof cliente.id != "undefined" && typeof cliente.createdAt == "undefined" ) { %>
+                                                        <span class="input-group-text"><i class='bx bxs-id-card'></i></span>
+                                                        <input type="text" class="form-control" name="id" placeholder="Documento de Identidad" value="<%= cliente.id %>">
+                                                        <%  } else { %>
+                                                            <span class="input-group-text"><i class='bx bxs-id-card'></i></span>
+                                                            <input type="text" class="form-control" name="id" placeholder="Numero de Documento" value="<%= cliente.id %>">
+                                                            <%  } %>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class='bx bxs-user-rectangle'></i></i></span>
+                                                    <% if (typeof cliente != "undefined") { %>
+                                                        <input type="text" class="form-control" name="email" placeholder="Email" value="<%= cliente.email %>">
+                                                        <%  } else{ %>
+                                                            <input type="text" class="form-control" name="email" placeholder="Email">
+                                                            <%  } %>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class='bx bxs-user'></i></span>
+                                                    <% if (typeof cliente != "undefined") { %>
+                                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<%= cliente.nombre %>">
+                                                        <%  } else{ %>
+                                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                                            <%  } %>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class='bx bxs-building'></i></span>
+                                                    <% if (typeof cliente != "undefined") { %>
+                                                        <input type="text" class="form-control" name="direccion" placeholder="Dirección" value="<%= cliente.direccion %>">
+                                                        <%  } else{ %>
+                                                            <input type="text" class="form-control" name="direccion" placeholder="Dirección">
+                                                            <%  } %>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row justify-content-center">
+
+                                            <div class="col-md-2">
+                                                <button class="btn btn-success" type="submit"><i class='bx bx-save bx-lg'>
+                                    </i><br> <% if (typeof cliente != "undefined" && typeof cliente.id != "undefined" ) { %>
+
+                                    Actualizar
+                                    <%}else{ %>
+                                       Crear
+                                <% }%> </button>
+                                            </div>
+                                        </div>
+                                </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (typeof alert != "undefined") { %>
+        <script>
+            Swal.fire({
+                title: '<%= alert.alertTitle %>',
+                text: '<%= alert.alertMessage %>',
+                icon: '<%= alert.alertIcon %>',
+                time: '<%= alert.time %>',
+                confirmButtonText: 'Cool'
+            });
+        </script>
+        <% } %>
